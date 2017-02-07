@@ -1,4 +1,4 @@
-# Single linked list
+#  Single linked list
 #
 #  > list = Node.new('a', nil)
 #  => #<struct Node data="a", next=nil>
@@ -11,10 +11,28 @@ Node = Struct.new(:data, :next) do
 
   def add(data)
     current = self
-    while (current.next != nil) do
-      current = current.next;
+    while current.next != nil do
+      current = current.next
     end
 
     current.next = Node.new(data, nil)
   end
+end
+
+def deleteNode(head, data)
+  current = head
+
+  if current.data == data
+    return head.next
+  end
+
+  while current.next != nil do
+    if current.next.data == data
+      current.next = current.next.next
+      return head
+    end
+    current = current.next
+  end
+
+  head
 end
