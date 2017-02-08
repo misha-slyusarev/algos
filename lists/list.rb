@@ -19,7 +19,7 @@ Node = Struct.new(:data, :next) do
   end
 end
 
-def deleteNode(head, data)
+def delete_node(head, data)
   current = head
 
   if current.data == data
@@ -33,6 +33,19 @@ def deleteNode(head, data)
     end
     current = current.next
   end
+end
 
-  head
+def remove_duplicates(head)
+  current = head
+  elements = {head.data => true}
+
+  while current&.next != nil do
+    if elements[current.next.data]
+      current.next = current.next.next and next
+    else
+      elements[current.data] = true
+    end
+
+    current = current.next
+  end
 end
