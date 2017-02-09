@@ -7,6 +7,8 @@
 #  > list.inspect
 #  => "#<struct Node data=\"a\", next=#<struct Node data=\"b\", next=nil>>"
 
+require_relative 'node_from_tail'
+
 Node = Struct.new(:data, :next) do
 
   def add(data)
