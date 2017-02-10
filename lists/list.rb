@@ -51,3 +51,9 @@ def remove_duplicates(head)
     current = current.next
   end
 end
+
+# Cannot remove last element
+def delete_by_reference(node)
+  node.data = node.next.data
+  node.next = node.next.next
+end
