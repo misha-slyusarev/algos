@@ -1,25 +1,34 @@
 class Stack
-  Struct.new("Node", :data, :next)
+  Struct.new('Node', :data, :pre_min, :next)
 
   attr_reader :min
 
   def push(data)
-    new_node = Struct::Node.new(data, @head)
+    new_node = Struct::Node.new(data, nil, @head)
     @head = new_node
 
-    @min = if @min == nil
-             data
-           else
-             data < @min ? data : @min
-           end
+    if @min == nil
+      @min = data
+    else
+      if data < @min
+        new_node.pre_min = @min
+        @min = data
+      end
+    end
+
+    data
   end
 
   def pop
     return if empty?
 
-    head_data = @head.data
-    @head = @head.next
-    head_data
+    top = @head
+    @head = top.next
+
+    @min = nil if empty?
+    @min = top.pre_min unless top.pre_min.nil?
+
+    top.data
   end
 
   def peek
