@@ -1,9 +1,17 @@
 class Stack
   Struct.new("Node", :data, :next)
 
+  attr_reader :min
+
   def push(data)
     new_node = Struct::Node.new(data, @head)
     @head = new_node
+
+    @min = if @min == nil
+             data
+           else
+             data < @min ? data : @min
+           end
   end
 
   def pop
