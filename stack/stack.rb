@@ -1,5 +1,5 @@
 class Stack
-  Struct.new('Node', :data, :pre_min, :next)
+  Struct.new('Node', :data, :pre_min, :prev)
 
   attr_reader :min
 
@@ -23,7 +23,7 @@ class Stack
     return if empty?
 
     top = @head
-    @head = top.next
+    @head = top.prev
 
     @min = nil if empty?
     @min = top.pre_min unless top.pre_min.nil?
